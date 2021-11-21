@@ -42,10 +42,11 @@ sed [ -n ] [ -u ] [ -e Script ] ... [ -f ScriptFile ] ...  [ File ... ]
 ### 플래그
 |항목|설명|
 |-----|------|
-|-e *스크립트*|편집 스크립트로서 *스크립트* 변수를 사용한다. 하나의 **-e** 플래그와 **-f** 플래그도 사용하지 않으면, **-e** 플래그는 생략될 수 있다.|
-|-f *ScriptFile*|편집 스크립트의 소스로서 *ScriptFile* 변수를 사용한다. *ScriptFile* 변수는 *File* 매개변수에 적용되는 준비된 편집 명령 세트이다.|
-|-n|표준 출력으로 정상적으로 기록된 모든 정보를 억제한다.|
-|-u|버퍼없음 모드에서 출력을 표시. 이 플래그가 설정될 때, **sed** 명령은 출력을 버퍼링하는 대신 즉시 출력을 표시한다. 디폴트는 버퍼링 모드이다.|
+|-n, --quiet, --silent|표준 출력으로 정상적으로 기록된 모든 정보를 억제한다.|
+|-e *스크립트* --expression=script|편집 스크립트로서 *스크립트* 변수를 사용한다. 하나의 **-e** 플래그와 **-f** 플래그도 사용하지 않으면, **-e** 플래그는 생략될 수 있다.|
+|-f *ScriptFile*, --file=script-file|편집 스크립트의 소스로서 *ScriptFile* 변수를 사용한다. *ScriptFile* 변수는 *File* 매개변수에 적용되는 준비된 편집 명령 세트이다.|
+|-i[SUFFIX], --in-place[=SUFFIX]|edit files in place (makes backup if extension supplied)|
+|-u, --unbuffered|버퍼없음 모드에서 출력을 표시. 이 플래그가 설정될 때, **sed** 명령은 출력을 버퍼링하는 대신 즉시 출력을 표시한다. 디폴트는 버퍼링 모드이다.|
 
 **참고:** 여러 -e 및 -f 플래그를 지정할 수 있다. 모든 부속 명령이 기점과 상관 없이 지정된 순서대로 스크립트에 추가된다.
 
@@ -367,6 +368,14 @@ exit [ Expression ] 조건문을 사용하여 프로그램 내에서 종료 상�
                {s += $1}
         END    {print "sum is",s,"average is", s/NR }      
     ```
+    
+6) 유저 목록 및 그룹 번호 확인하기
+    
+    <img width="416" alt="awk_1" src="https://user-images.githubusercontent.com/94420917/142759764-c44bd30b-fa9c-4683-aabd-781911b68bc9.png">
+    
+    cat /etc/passwd 의 값을 파이프 라인을 이용하여 넘기고 해당 데이터를 -F 옵션을 이용하여 [:] 세미콜론 단위로 구분하고 첫번째 필드(User ID) 와 세번째 필드(Group Number)를 출력한다.
+
+
 
 # getopt 명령어
 
